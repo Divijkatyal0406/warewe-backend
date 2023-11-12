@@ -19,6 +19,32 @@ npm install
 Launch the API server locally: `node app.js`<br>
 Launch Deployed Service: https://warewe-backend-sb64.onrender.com/
 
+# Prisma Models
+```
+model Content {
+  id Int @id @default(autoincrement())
+  title String @unique
+  description String
+  createdAt DateTime @default(now())
+  User User? @relation(fields: [userId],references: [id])
+  userId Int?
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  username String @unique
+  email String @unique
+  contents Content[]
+}
+
+model HistoricalRequest {
+  id Int @id @default(autoincrement())
+  method String
+  originalUrl String
+  timestamp DateTime @default(now())
+}
+```
+
 # API Endpoints
 ## Get List of Users
 
