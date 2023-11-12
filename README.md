@@ -6,7 +6,7 @@ A robust backend service crafted for Warewe's assignment. This API, influenced b
 
 ## API Testing with Postman-like UI
 To facilitate easy testing of the Warewe Assignment APIs, a Postman-like UI has been integrated into the project as mentioned in assignment details.
-Deployed URL - 
+Deployed URL - https://warewe-frontend.onrender.com
 
 ## Installation
 ```
