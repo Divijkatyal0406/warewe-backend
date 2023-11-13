@@ -70,7 +70,7 @@ model HistoricalRequest {
 
 ### Request
 
-`GET /api/users`
+`GET /api/users/user`
 
 ### Query Parameters
 ```
@@ -125,7 +125,7 @@ value: INTEGER id
 
 ### Request
 
-`GET /api/contents`
+`GET /api/contents/content`
 
 ### Query Parameters
 ```
