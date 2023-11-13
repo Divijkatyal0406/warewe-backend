@@ -11,7 +11,9 @@ const createContentValidation = [
   body('description').optional().isLength({ min: 11 }).withMessage('Description must be greater than 10 characters'),
 ];
 
+
 router.get('/', async (req, res, next) => {
+  
   try{
     const contents = await prisma.content.findMany({
       include:{User:true}
@@ -22,6 +24,18 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get('/content', async (req, res, next) => {
+  try{
+    const {id} = req.query;
+    console.log('Requested Content ID:', id);
+    const content=await prisma.content.findUnique({where:{id:Number(id)},include:{User:true}});
+    res.json(content);
+  }catch(err){
+    next(err);
+  }
+});
+
+
 router.post('/', createContentValidation, async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -31,16 +45,6 @@ router.post('/', createContentValidation, async (req, res, next) => {
     const content = await prisma.content.create({
       data:req.body  
     })
-    res.json(content);
-  }catch(err){
-    next(err);
-  }
-});
-
-router.get('/', async (req, res, next) => {
-  try{
-    const {id} = req.query;
-    const content=await prisma.content.findUnique({where:{id:Number(id)},include:{User:true}});
     res.json(content);
   }catch(err){
     next(err);

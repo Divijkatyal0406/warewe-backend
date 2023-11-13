@@ -50,7 +50,7 @@ router.post('/', createUserValidation, async (req, res, next) => {
 });
 
 
-router.get('/', async (req, res, next) => {
+router.get('/user', async (req, res, next) => {
   try{
     const {id} = req.query;
     const user=await prisma.user.findUnique({where:{id:Number(id)},include:{contents:true}});
